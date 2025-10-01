@@ -1,3 +1,59 @@
 ###Python Scripts
 ##county_chp_retrieval.py
+import os
+import urllib.request
+import zipfile
+import tempfile
+import shutil
 
+# Base URL for the TNRIS
+BASE_URL = "https://tnris-data-warehouse.s3.us-east-1.amazonaws.com/LCD/collection/txdot/counties/"
+
+# All file names on that index page
+FILES_TO_DOWNLOAD = [
+    "txdot_counties.json",
+    "txdot_counties_topo.json",
+    "txdot_county_detailed_tx.CPG",
+    "txdot_county_detailed_tx.dbf",
+    "txdot_county_detailed_tx.prj",
+    "txdot_county_detailed_tx.sbn",
+    "txdot_county_detailed_tx.sbx",
+    "txdot_county_detailed_tx.shp",
+    "txdot_county_detailed_tx.shp.xml",
+    "txdot_county_detailed_tx.shx",
+]
+
+# Output folder & ZIP filename
+OUTPUT_FOLDER = r"C:\Users\odyg7\Downloads\Oce_lot"
+ZIP_FILENAME = "txdot_counties.zip"
+
+# Make sure output folder exists
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+
+# Temporary folder to hold downloads
+temp_dir = tempfile.mkdtemp()
+
+try:
+    for filename in FILES_TO_DOWNLOAD:
+        url = BASE_URL + filename
+        dest_path = os.path.join(temp_dir, filename)
+        print(f"⬇ Downloading: {url}")
+
+        try:
+            urllib.request.urlretrieve(url, dest_path)
+        except Exception as e:
+            print(f"Failed to download {filename}: {e}")
+
+    # Zip everything
+    zip_path = os.path.join(OUTPUT_FOLDER, ZIP_FILENAME)
+    with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, _, files in os.walk(temp_dir):
+            for file in files:
+                abs_path = os.path.join(root, file)
+                rel_path = os.path.relpath(abs_path, temp_dir)
+                zipf.write(abs_path, rel_path)
+    print(f"All files zipped successfully into {zip_path}")
+
+finally:
+    shutil.rmtree(temp_dir)
+    print("Temporary files cleaned up.")
