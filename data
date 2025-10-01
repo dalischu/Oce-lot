@@ -1,3 +1,5 @@
 ###Data Retrieval
 ##Ocelot Final Recovery Plan_Signed_July2016
 "C:\Users\odyg7\Downloads\Ocelot Final Recovery Plan_Signed_July 2016_new (1).pdf"
+##County Shapefile
+https://tnris-data-warehouse.s3.us-east-1.amazonaws.com/index.html?prefix=LCD/collection/txdot/counties
