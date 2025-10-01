@@ -57,3 +57,4 @@ try:
 finally:
     shutil.rmtree(temp_dir)
     print("Temporary files cleaned up.")
+##Clipping_LRGV
