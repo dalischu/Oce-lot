@@ -1,5 +1,10 @@
 ###Data Retrieval
 ##Ocelot Final Recovery Plan_Signed_July2016
 "C:\Users\odyg7\Downloads\Ocelot Final Recovery Plan_Signed_July 2016_new (1).pdf"
+##ArcGIS Project in Folder named Ocelot_Arc
+C:\Users\odyg7\Downloads\Oce_lot\Ocelot_Arc
 ##County Shapefile
 https://tnris-data-warehouse.s3.us-east-1.amazonaws.com/index.html?prefix=LCD/collection/txdot/counties
+##Ocelots in counties seen since 1990 according to pdf
+Ocelots_LowerRGV
+C:\Users\odyg7\Downloads\Oce_lot\Ocelot_Arc\txdot_counties\txdot_county_detailed_tx.shp (might change data source later)
